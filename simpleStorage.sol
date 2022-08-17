@@ -13,6 +13,9 @@ contract simpleStore{
     }
     Person[] public person;
    
+mapping(string => uint256) public nameToFavoriteNumber;
+
+
 
     function store(uint256 _favoriteNumber) public {
         favoriteNumber = _favoriteNumber;
@@ -22,8 +25,10 @@ contract simpleStore{
     function retrieve() public view returns(uint256){
         return favoriteNumber;
     }
-
+        //Calldata (temp cant be modified), memory (temp can be mofied), storage( not temporary variables) [use only for struct array or mapping]
     function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        //no storage in the function definiton
         person.push(Person(_favoriteNumber, _name));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
     }
 }
